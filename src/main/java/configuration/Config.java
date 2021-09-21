@@ -3,18 +3,25 @@ package configuration;
 import database.DBFactory;
 import database.DBInterface;
 import console.ConsolePrint;
+import logics.UserService;
+import logics.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Config {
     @Bean
-    public ConsolePrint console(){
+    public ConsolePrint console() {
         return new ConsolePrint();
     }
+
     @Bean
-    public DBInterface dbInterface(){
+    public DBInterface dbInterface() {
         return DBFactory.getInstance();
     }
 
+    @Bean
+    public UserService userService() {
+        return new UserServiceImpl(console(), dbInterface());
+    }
 }
