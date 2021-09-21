@@ -14,7 +14,7 @@ public class ConsolePrint {
     private final PrintWriter writer = new PrintWriter(System.out);
 
     public String read() {
-        System.out.println("\n" + ">");
+        System.out.println(">");
         return scanner.nextLine();
     }
     public void write(String line) {

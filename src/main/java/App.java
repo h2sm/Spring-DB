@@ -8,6 +8,6 @@ public class App {
     public static void main(String[] args) {
         var console = new AnnotationConfigApplicationContext(Config.class)
                 .getBean("console", ConsolePrint.class);
-
+        console.read();
     }
 }
