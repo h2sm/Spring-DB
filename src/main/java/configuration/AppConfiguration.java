@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class Config {
+public class AppConfiguration {
     @Bean
     public ConsolePrint console() {
         return new ConsolePrint();
@@ -23,5 +23,9 @@ public class Config {
     @Bean
     public UserService userService() {
         return new UserServiceImpl(console(), dbInterface());
+    }
+    @Bean
+    public Properties properties(){
+        return new Properties();
     }
 }
