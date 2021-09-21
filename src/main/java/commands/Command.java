@@ -1,6 +1,6 @@
-package io;
+package commands;
 
 public interface Command {
     Command getCommand();
-    void returnMsg();
+    String returnMsg();
 }

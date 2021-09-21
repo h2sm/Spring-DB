@@ -2,7 +2,7 @@ package configuration;
 
 import database.DBFactory;
 import database.DBInterface;
-import io.console.ConsolePrint;
+import console.ConsolePrint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
