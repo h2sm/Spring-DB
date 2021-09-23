@@ -1,8 +1,12 @@
 package logics;
 
+import commands.Command;
+import commands.Exit;
+
 public interface UserService {
-    void setup();
-    void retrieveCommand();
+    void start();
+    Command retrieveCommand();
+    void handleCommand(Command command);
     void returnInformation();
-    void exit();
+    void exit(Exit command);
 }

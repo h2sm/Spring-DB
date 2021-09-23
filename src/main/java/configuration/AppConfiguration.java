@@ -1,8 +1,9 @@
 package configuration;
 
+import console.Console;
+import console.UI;
 import database.DBFactory;
 import database.DBInterface;
-import console.ConsolePrint;
 import logics.UserService;
 import logics.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class AppConfiguration {
     @Autowired
     Environment env;
     @Bean
-    public ConsolePrint console() {
-        return new ConsolePrint();
+    public UI ui() {
+        return new Console();
     }
 
     @Bean
@@ -28,14 +29,14 @@ public class AppConfiguration {
 
     @Bean
     public UserService userService() {
-        return new UserServiceImpl(console(), dbInterface());
+        return new UserServiceImpl(ui(), dbInterface(), properties());
     }
     @Bean
     public AuthProperties properties(){
-        var p = new AuthProperties();
-        p.setLogin(env.getProperty("docker.Login"));
-        p.setPassword(env.getProperty("docker.Password"));
-        p.setUrl(env.getProperty("docker.URL"));
-        return p;
+        var properties = new AuthProperties();
+        properties.setLogin(env.getProperty("docker.Login"));
+        properties.setPassword(env.getProperty("docker.Password"));
+        properties.setUrl(env.getProperty("docker.URL"));
+        return properties;
     }
 }

@@ -1,6 +1,5 @@
 package commands;
 
-public interface Command {
-    void handle();
+public abstract class Command {
 
 }
