@@ -1,5 +1,7 @@
 package configuration;
 
+import commands.parsing.Parser;
+import commands.parsing.ParserImpl;
 import console.Console;
 import console.UI;
 import database.DBFactory;
@@ -29,7 +31,7 @@ public class AppConfiguration {
 
     @Bean
     public UserService userService() {
-        return new UserServiceImpl(ui(), dbInterface(), properties());
+        return new UserServiceImpl(ui(), dbInterface(), properties(), parse());
     }
     @Bean
     public AuthProperties properties(){
@@ -38,5 +40,9 @@ public class AppConfiguration {
         properties.setPassword(env.getProperty("docker.Password"));
         properties.setUrl(env.getProperty("docker.URL"));
         return properties;
+    }
+    @Bean
+    public Parser parse(){
+        return new ParserImpl();
     }
 }
