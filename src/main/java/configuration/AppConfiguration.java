@@ -26,12 +26,12 @@ public class AppConfiguration {
 
     @Bean
     public DBInterface dbInterface() {
-        return DBFactory.getInstance();
+        return DBFactory.getInstance(properties());
     }
 
     @Bean
     public UserService userService() {
-        return new UserServiceImpl(ui(), dbInterface(), properties(), parse());
+        return new UserServiceImpl(ui(), dbInterface(), parse());
     }
     @Bean
     public AuthProperties properties(){

@@ -11,14 +11,16 @@ import java.util.logging.Logger;
 public class PGDataSource implements DataSource {
     private final String username;
     private final String password;
+    private final String URL;
 
-    public PGDataSource(String username, String password) {
+    public PGDataSource(String username, String password, String URL) {
         this.username = username;
         this.password = password;
+        this.URL = URL;
     }
     @Override
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql:PhotoboothDB", username, password);
+        return DriverManager.getConnection(URL, username, password);
     }
 
     @Override

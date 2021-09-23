@@ -10,13 +10,11 @@ import database.DBInterface;
 public class UserServiceImpl implements UserService {
     private final UI ui;
     private final DBInterface db;
-    private final AuthProperties ap;
     private final Parser parser;
 
-    public UserServiceImpl(UI ui, DBInterface dbInterface, AuthProperties properties, Parser parser) {
+    public UserServiceImpl(UI ui, DBInterface dbInterface, Parser parser) {
         this.ui = ui;
         this.db = dbInterface;
-        this.ap = properties;
         this.parser = parser;
     }
 
@@ -42,8 +40,8 @@ public class UserServiceImpl implements UserService {
     }
 
     private void find(Find command) {
-        System.out.println(command.getClass().getSimpleName() + " " + command.getParam());
-        //db.find(command.getParam());
+        //System.out.println(command.getClass().getSimpleName() + " " + command.getParam());
+        db.find(command.getParam());
     }
 
     private void findAll(FindAll command) {
