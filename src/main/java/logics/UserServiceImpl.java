@@ -2,8 +2,6 @@ package logics;
 
 import commands.*;
 import commands.parsing.Parser;
-import commands.parsing.ParserImpl;
-import configuration.AuthProperties;
 import console.UI;
 import database.DBInterface;
 
@@ -40,15 +38,12 @@ public class UserServiceImpl implements UserService {
     }
 
     private void find(Find command) {
-        //System.out.println(command.getClass().getSimpleName() + " " + command.getParam());
         db.find(command.getParam());
     }
 
     private void findAll(FindAll command) {
-        System.out.println(command.getClass().getSimpleName());
-        //db.findAll();
+        db.findAll();
     }
-
 
     @Override
     public void returnInformation() {
