@@ -4,7 +4,9 @@ import commands.*;
 import commands.parsing.Parser;
 import console.UI;
 import database.DBInterface;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class UserServiceImpl implements UserService {
     private final UI ui;
     private final DBInterface db;
@@ -18,6 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void start() {
+        log.info("User Service started");
         while (true) {
             var comm = retrieveCommand();
             handleCommand(comm);
