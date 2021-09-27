@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Slf4j
 public class DBService implements DBInterface {
@@ -22,11 +23,18 @@ public class DBService implements DBInterface {
         return repository.findAll(conn);
     }
 
-    @SneakyThrows
     @Override
     public ResultSet find(String str) {
         log.info("find command was launched");
-        var conn = src.getConnection();
-        return repository.find(conn,str);
+        ResultSet rs = null;
+        try {
+            var conn = src.getConnection();
+            rs = repository.find(conn,str);
+            return rs;
+        }
+        catch (SQLException e){
+            log.error("Cant handle this find command");
+        }
+        return rs;
     }
 }
