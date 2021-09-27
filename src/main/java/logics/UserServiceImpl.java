@@ -6,6 +6,8 @@ import console.UI;
 import database.DBInterface;
 import lombok.extern.slf4j.Slf4j;
 
+import java.sql.ResultSet;
+
 @Slf4j
 public class UserServiceImpl implements UserService {
     private final UI ui;
@@ -21,10 +23,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void start() {
         log.info("User Service started");
-        while (true) {
+        do {
             var comm = retrieveCommand();
             handleCommand(comm);
-        }
+        } while (true);
     }
 
     @Override
@@ -40,17 +42,17 @@ public class UserServiceImpl implements UserService {
         if (command.getClass() == FindAll.class) findAll((FindAll) command);
     }
 
-    private void find(Find command) {
-        db.find(command.getParam());
+    private ResultSet find(Find command) {
+        return db.find(command.getParam());
     }
 
-    private void findAll(FindAll command) {
-        db.findAll();
+    private ResultSet findAll(FindAll command) {
+        return db.findAll();
     }
 
     @Override
-    public void returnInformation() {
-
+    public void returnInformation(ResultSet rs) {
+        ui.show("Nothing ");
     }
 
     @Override

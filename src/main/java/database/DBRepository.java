@@ -12,7 +12,9 @@ public class DBRepository {
         }
     }
 
-    public void findAll(Connection conn) {
-
+    public ResultSet findAll(Connection conn) throws SQLException {
+        try (var ps = conn.prepareStatement("select ")) {
+            return ps.executeQuery();
+        }
     }
 }

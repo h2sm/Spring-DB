@@ -7,9 +7,10 @@ import lombok.Setter;
 public class Find extends Command {
     private final String param;
 
-    public Find(String param){
-        this.param=param;
+    public Find(String param) {
+        this.param = param;
     }
+
     @Override
     public boolean equals(Object obj) {
         return obj.getClass() == this.getClass();

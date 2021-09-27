@@ -1,6 +1,8 @@
 package database;
 
+import java.sql.ResultSet;
+
 public interface DBInterface {
-   void findAll();
-   void find(String str);
+   ResultSet findAll();
+   ResultSet find(String str);
 }

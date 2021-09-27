@@ -3,6 +3,7 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
 
 @Slf4j
 public class DBService implements DBInterface {
@@ -15,17 +16,17 @@ public class DBService implements DBInterface {
     }
     @SneakyThrows
     @Override
-    public void findAll() {
+    public ResultSet findAll() {
         log.info("findAll command was launched");
         var conn = src.getConnection();
-        repository.findAll(conn);
+        return repository.findAll(conn);
     }
 
     @SneakyThrows
     @Override
-    public void find(String str) {
+    public ResultSet find(String str) {
         log.info("find command was launched");
         var conn = src.getConnection();
-        repository.find(conn,str);
+        return repository.find(conn,str);
     }
 }
