@@ -24,22 +24,19 @@ public class UserServiceImpl implements UserService {
     public void start() {
         log.info("User Service started");
         do {
+            ResultSet rs = null;
             var comm = retrieveCommand();
-            handleCommand(comm);
+            if (comm.getClass()==Exit.class) exit((Exit) comm);
+            if (comm.getClass()==Find.class) rs = find((Find) comm);
+            if (comm.getClass()==FindAll.class) rs = findAll((FindAll) comm);
+            returnInformation(rs);
         } while (true);
     }
 
     @Override
     public Command retrieveCommand() {
         var str = ui.read();
-        return parser.parse(str);
-    }
-
-    @Override
-    public void handleCommand(Command command) {
-        if (command.getClass() == Exit.class) exit((Exit) command);
-        if (command.getClass() == Find.class) find((Find) command);
-        if (command.getClass() == FindAll.class) findAll((FindAll) command);
+        return parser.parseCommand(str);
     }
 
     private ResultSet find(Find command) {
@@ -52,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void returnInformation(ResultSet rs) {
-        ui.show("Nothing ");
+        ui.show(rs);
     }
 
     @Override
