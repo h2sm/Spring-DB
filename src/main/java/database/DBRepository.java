@@ -7,14 +7,16 @@ import java.sql.SQLException;
 public class DBRepository {
 
     public ResultSet find(Connection conn, String str) throws SQLException {
-        try (var ps = conn.prepareStatement("select * from " + str)) {
-            return ps.executeQuery();
-        }
+        var statement = conn.prepareStatement("select * from " + str);
+        var rs = statement.executeQuery();
+        conn.close();
+        return rs;
     }
 
     public ResultSet findAll(Connection conn) throws SQLException {
-        try (var ps = conn.prepareStatement("select ")) {
-            return ps.executeQuery();
-        }
+        var statement = conn.prepareStatement("SELECT * FROM pg_catalog.pg_tables where schemaname = 'public';");
+        var rs = statement.executeQuery();
+        conn.close();
+        return rs;
     }
 }
