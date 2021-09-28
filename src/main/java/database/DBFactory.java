@@ -12,7 +12,8 @@ public class DBFactory {
             log.info(messageService.localize("logging.dbGetInstanceMethodInitiated"));
             service = new DBService(
                     new PGDataSource(p.getLogin(),p.getPassword(), p.getUrl()),
-                    new DBRepository()
+                    new DBRepository(),
+                    messageService
             );
         }
         return service;

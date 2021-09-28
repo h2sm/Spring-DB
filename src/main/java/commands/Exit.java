@@ -6,7 +6,6 @@ public class Exit extends Command {
         return obj.getClass() == this.getClass();
     }
     public void doExit(){
-        System.out.println("Good bye!");
         System.exit(0);
     }
 }

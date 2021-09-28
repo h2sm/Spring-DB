@@ -1,4 +1,6 @@
 package database;
+import localization.MessageService;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -7,25 +9,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Slf4j
+@RequiredArgsConstructor
 public class DBService implements DBInterface {
     private final DataSource src;
     private final DBRepository repository;
+    private final MessageService ms;
 
-    public DBService(DataSource ds, DBRepository dbr) {
-        this.src = ds;
-        this.repository = dbr;
-    }
     @SneakyThrows
     @Override
     public ResultSet findAll() {
-        log.info("findAll command was launched");
+        log.info(ms.localize("logging.findInitiated"));
         var conn = src.getConnection();
         return repository.findAll(conn);
     }
 
     @Override
     public ResultSet find(String str) {
-        log.info("find command was launched");
+        log.info(ms.localize("logging.findAllInitiated"));
         ResultSet rs = null;
         try {
             var conn = src.getConnection();
@@ -33,7 +33,7 @@ public class DBService implements DBInterface {
             return rs;
         }
         catch (SQLException e){
-            log.error("Cant handle this find command");
+            log.error(ms.localize("logging.cantHandleCommException"));
         }
         return rs;
     }

@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.Scanner;
+
 @Slf4j
 @RequiredArgsConstructor
 public class Console implements UI {
@@ -27,7 +28,7 @@ public class Console implements UI {
     @SneakyThrows
     @Override
     public void show(ResultSet rs) {
-        log.info("Show method called");
+        log.info(ms.localize("logging.showMethodUiInitiated"));
         if (rs != null) {
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
@@ -41,5 +42,11 @@ public class Console implements UI {
             }
             rs.close();
         }
+    }
+    @Override
+    public void show(String s) {
+        log.info(ms.localize("logging.showMethodUiInitiated"));
+        writer.print(s);
+        writer.flush();
     }
 }
