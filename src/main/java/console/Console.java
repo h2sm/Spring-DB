@@ -1,5 +1,7 @@
 package console;
 
+import localization.MessageService;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,13 +10,16 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.Scanner;
 @Slf4j
+@RequiredArgsConstructor
 public class Console implements UI {
     private final Scanner scanner = new Scanner(System.in);
     private final PrintWriter writer = new PrintWriter(System.out);
+    private final MessageService ms;
 
     @Override
     public String read() {
-        log.info("read method called");
+        log.info(ms.localize("logging.readMethodUiInitiated"));
+        //log.info("read method called");
         System.out.println(">");
         return scanner.nextLine();
     }

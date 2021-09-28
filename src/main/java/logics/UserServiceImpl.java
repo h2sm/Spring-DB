@@ -4,24 +4,28 @@ import commands.*;
 import commands.parsing.Parser;
 import console.UI;
 import database.DBInterface;
+import localization.MessageService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import java.sql.ResultSet;
+import java.util.Locale;
 
 @Slf4j
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UI ui;
     private final DBInterface db;
     private final Parser parser;
+    private final MessageService ms;
 
-    public UserServiceImpl(UI ui, DBInterface dbInterface, Parser parser) {
-        this.ui = ui;
-        this.db = dbInterface;
-        this.parser = parser;
-    }
 
     @Override
     public void start() {
-        log.info("User Service started");
+        log.info("Ru/en/jp?");
+        ms.getLocaleService().setCurrent(
+                Locale.forLanguageTag(returnLocale())
+        );
+        log.info(ms.localize("logging.userServiceStarted"));
         do {
             ResultSet rs = null;
             var comm = retrieveCommand();
@@ -30,6 +34,9 @@ public class UserServiceImpl implements UserService {
             if (comm.getClass()==FindAll.class) rs = findAll((FindAll) comm);
             returnInformation(rs);
         } while (true);
+    }
+    public String returnLocale(){
+        return ui.read();
     }
 
     @Override

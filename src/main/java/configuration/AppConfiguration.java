@@ -6,12 +6,16 @@ import console.Console;
 import console.UI;
 import database.DBFactory;
 import database.DBInterface;
+import localization.LocaleService;
+import localization.MessageService;
 import logics.UserService;
 import logics.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 
 @Configuration
@@ -21,17 +25,17 @@ public class AppConfiguration {
     Environment env;
     @Bean
     public UI ui() {
-        return new Console();
+        return new Console(msgService());
     }
 
     @Bean
     public DBInterface dbInterface() {
-        return DBFactory.getInstance(properties());
+        return DBFactory.getInstance(properties(), msgService());
     }
 
     @Bean
     public UserService userService() {
-        return new UserServiceImpl(ui(), dbInterface(), parse());
+        return new UserServiceImpl(ui(), dbInterface(), parse(), msgService());
     }
     @Bean
     public AuthProperties properties(){
@@ -44,5 +48,22 @@ public class AppConfiguration {
     @Bean
     public Parser parse(){
         return new ParserImpl();
+    }
+    @Bean
+    public MessageSource messageSource(){
+        var src = new ReloadableResourceBundleMessageSource();
+        src.setBasename("classpath:languages");
+        src.setDefaultEncoding("UTF-8");
+        src.setCacheSeconds(900);
+        src.setUseCodeAsDefaultMessage(true);
+        return src;
+    }
+    @Bean
+    public LocaleService localeService(){
+        return new LocaleService();
+    }
+    @Bean
+    public MessageService msgService(){
+        return new MessageService(messageSource(),localeService());
     }
 }
