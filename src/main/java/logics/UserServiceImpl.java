@@ -5,7 +5,6 @@ import commands.parsing.Parser;
 import console.UI;
 import database.DBInterface;
 import lombok.extern.slf4j.Slf4j;
-
 import java.sql.ResultSet;
 
 @Slf4j

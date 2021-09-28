@@ -13,7 +13,7 @@ public class DBRepository {
         return rs;
     }
 
-    public ResultSet findAll(Connection conn) throws SQLException {
+    public ResultSet findAll(Connection conn) throws SQLException { //select tablename from pg_catalog.pg_tables where schemaname = 'public';
         var statement = conn.prepareStatement("SELECT * FROM pg_catalog.pg_tables where schemaname = 'public';");
         var rs = statement.executeQuery();
         conn.close();

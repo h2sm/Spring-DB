@@ -1,5 +1,4 @@
 import configuration.AppConfiguration;
-import configuration.AuthProperties;
 import logics.UserServiceImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
