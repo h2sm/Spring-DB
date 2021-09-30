@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
-@Slf4j
 public class PGDataSource implements DataSource {
     private final String username;
     private final String password;
@@ -22,7 +21,6 @@ public class PGDataSource implements DataSource {
     }
     @Override
     public Connection getConnection() throws SQLException {
-        log.info("Connection to database was initiated");
         return DriverManager.getConnection(URL, username, password);
     }
 

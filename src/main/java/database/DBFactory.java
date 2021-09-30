@@ -2,6 +2,8 @@ package database;
 
 import aspects.logging.Loggable;
 import configuration.AuthProperties;
+import org.springframework.stereotype.Service;
+
 
 public class DBFactory {
     private static DBService service = null;

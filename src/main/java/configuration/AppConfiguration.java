@@ -19,14 +19,12 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Service;
 
 @Configuration
 @PropertySource("classpath:/dockerConfig.properties")
 @EnableAspectJAutoProxy
 public class AppConfiguration {
-    @Autowired
-    Environment env;
+    @Autowired Environment env;
     @Bean
     public UI ui() {
         return new Console();
@@ -63,8 +61,8 @@ public class AppConfiguration {
         return src;
     }
     @Bean
-    public LoggingAspect aspect(MessageService ms){
-        return new LoggingAspect(ms);
+    public LoggingAspect aspect(){
+        return new LoggingAspect(msgService());
     }
     @Bean
     public LocaleService localeService(){

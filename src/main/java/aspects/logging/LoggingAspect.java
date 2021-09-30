@@ -14,14 +14,16 @@ import java.util.Arrays;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class LoggingAspect{
-private final MessageService ms;
+public class LoggingAspect {
+    private final MessageService ms;
+
     @Before("@annotation(Loggable))")
-    public void logThis(JoinPoint jopo) {
+    public void log(JoinPoint jopo) {
         String methodName = jopo.getSignature().getName();
-        Object[] methodArgs = jopo.getArgs();
         var className = jopo.getTarget().getClass().getSimpleName();
-        log.info(ms.localize("logging.call") + methodName + " from class " +  className);
+        var args = jopo.getArgs();
+        log.info(ms.localize("logging.call", methodName, className, Arrays.toString(args)));
     }
+
 
 }
