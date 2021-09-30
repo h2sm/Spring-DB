@@ -19,7 +19,8 @@ public class MessageService {
     public String localize(String code, Object ... params) {
         return messageSource.getMessage(code, params, localeService.getCurrent());
     }
-    public LocaleService getLocaleService(){
-        return localeService;
+
+    public void askForLocale(){
+        localeService.askLocale();
     }
 }

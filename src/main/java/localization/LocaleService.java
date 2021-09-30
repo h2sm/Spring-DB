@@ -1,12 +1,20 @@
 package localization;
 
+import console.UI;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-//import org.springframework.stereotype.Service;
-//@Service
+
 import java.util.Locale;
 
+@RequiredArgsConstructor
 public class LocaleService {
-    @Getter @Setter
+    private final UI ui;
+    @Getter
     private Locale current = Locale.forLanguageTag("ru");
+
+    public void askLocale() {
+        var localeStr = ui.read();
+        current = Locale.forLanguageTag(localeStr);
+    }
 }

@@ -24,10 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void start() {
         ui.show("ru/en/jp??????");
-        ms.getLocaleService().setCurrent(
-                Locale.forLanguageTag(returnString())
-        );
-        log.info(ms.localize("logging.userServiceStarted"));
+        ms.askForLocale();
         do {
             ResultSet rs = null;
             var comm = retrieveCommand();
@@ -64,7 +61,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void exit(Exit command) {
-        ui.show(ms.localize("logging.exit"));
         command.doExit();
     }
 }

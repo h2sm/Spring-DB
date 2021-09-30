@@ -1,5 +1,6 @@
 package configuration;
 
+import aspects.logging.LoggingAspect;
 import commands.parsing.Parser;
 import commands.parsing.ParserImpl;
 import console.Console;
@@ -14,23 +15,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
 
 @Configuration
 @PropertySource("classpath:/dockerConfig.properties")
+@EnableAspectJAutoProxy
 public class AppConfiguration {
     @Autowired
     Environment env;
     @Bean
     public UI ui() {
-        return new Console(msgService());
+        return new Console();
     }
 
     @Bean
     public DBInterface dbInterface() {
-        return DBFactory.getInstance(properties(), msgService());
+        return DBFactory.getInstance(properties());
     }
 
     @Bean
@@ -59,8 +63,12 @@ public class AppConfiguration {
         return src;
     }
     @Bean
+    public LoggingAspect aspect(MessageService ms){
+        return new LoggingAspect(ms);
+    }
+    @Bean
     public LocaleService localeService(){
-        return new LocaleService();
+        return new LocaleService(ui());
     }
     @Bean
     public MessageService msgService(){
