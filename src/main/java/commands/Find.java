@@ -1,7 +1,6 @@
 package commands;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class Find extends Command {

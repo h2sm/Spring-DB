@@ -1,11 +1,12 @@
 package localization;
 
+import aspects.logging.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class MessageService {
     private static final Object[] EMPTY_ARGS = new Object[0];
 
@@ -15,12 +16,12 @@ public class MessageService {
     public String localize(String code) {
         return messageSource.getMessage(code, EMPTY_ARGS, localeService.getCurrent());
     }
-
-    public String localize(String code, Object ... params) {
+    @Loggable
+    public String localize(String code, Object... params) {
         return messageSource.getMessage(code, params, localeService.getCurrent());
     }
-
-    public void askForLocale(){
+    @Loggable
+    public void askForLocale() {
         localeService.askLocale();
     }
 }

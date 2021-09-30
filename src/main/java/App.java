@@ -1,5 +1,5 @@
 import configuration.AppConfiguration;
-import logics.UserService;
+import logics.UserService;;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App {

@@ -15,14 +15,13 @@ public class DBService implements DBInterface {
 
     @SneakyThrows
     @Override
-    @Loggable
     public ResultSet findAll() {
         var conn = src.getConnection();
         return repository.findAll(conn);
     }
 
     @Override
-    @Loggable
+
     public ResultSet find(String str) {
         ResultSet rs = null;
         try {

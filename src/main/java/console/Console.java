@@ -1,14 +1,9 @@
 package console;
 
 import aspects.logging.Loggable;
-import localization.MessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
-
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -23,7 +18,6 @@ public class Console implements UI {
     @Override
     @Loggable
     public String read() {
-        //log.info(ms.localize("logging.readMethodUiInitiated"));
         System.out.println(">");
         return scanner.nextLine();
     }
