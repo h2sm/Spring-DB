@@ -4,15 +4,12 @@ import commands.Command;
 import commands.Exit;
 import commands.FindAchievements;
 import commands.FindAll;
-import logging.LoggingAspect;
-import parse.Parser;
-import parse.ParserImpl;
-import console.Console;
+import parser.Parser;
+import parser.ParserImpl;
+import console.ConsoleUI;
 import console.UI;
 import database.DBFactory;
 import database.DBInterface;
-import localization.LocaleService;
-import localization.MessageService;
 import logics.UserService;
 import logics.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +30,7 @@ public class AppConfiguration {
     @Autowired Environment env;
     @Bean
     public UI ui() {
-        return new Console();
+        return new ConsoleUI();
     }
 
     @Bean
@@ -43,7 +40,8 @@ public class AppConfiguration {
 
     @Bean
     public UserService userService() {
-        return new UserServiceImpl(ui(), dbInterface(), parse(), msgService());
+        return new UserServiceImpl(ui(),parse());
+        //return new UserServiceImpl(ui(), parse(), msgService());
     }
     @Bean
     public AuthProperties properties(){
@@ -74,12 +72,12 @@ public class AppConfiguration {
 //    public LoggingAspect aspect(){
 //        return new LoggingAspect();
 //    }
-    @Bean
-    public LocaleService localeService(){
-        return new LocaleService(ui());
-    }
-    @Bean
-    public MessageService msgService(){
-        return new MessageService(messageSource(),localeService());
-    }
+//    @Bean
+//    public LocaleService localeService(){
+//        return new LocaleService(ui());
+//    }
+//    @Bean
+//    public MessageService msgService(){
+//        return new MessageService(messageSource(),localeService());
+//    }
 }

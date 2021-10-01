@@ -1,8 +1,7 @@
-package parse;
+package parser;
 
 import commands.Command;
 import lombok.RequiredArgsConstructor;
-import models.Model;
 
 import java.util.HashSet;
 

@@ -1,6 +1,8 @@
 package database;
+
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import models.Model;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -13,23 +15,15 @@ public class DBService implements DBInterface {
 
     @SneakyThrows
     @Override
-    public ResultSet findAll() {
+    public Model findAll() {
         var conn = src.getConnection();
-        return repository.findAll(conn);
+        return (Model) repository.findAll(conn);
     }
 
     @Override
-
-    public ResultSet find(String str) {
-        ResultSet rs = null;
-        try {
-            var conn = src.getConnection();
-            rs = repository.find(conn,str);
-            return rs;
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return rs;
+    @SneakyThrows
+    public Model find(String str) {
+        var conn = src.getConnection();
+        return repository.find(conn, str);
     }
 }

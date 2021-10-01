@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 @RequiredArgsConstructor
 @Service
-public class Console implements UI {
+public class ConsoleUI implements UI {
     private final Scanner scanner = new Scanner(System.in);
     private final PrintWriter writer = new PrintWriter(System.out);
 
