@@ -3,7 +3,6 @@ package commands;
 import database.DBInterface;
 import models.Model;
 
-
 public class FindAchievements extends Command {
 
     public FindAchievements(DBInterface db) {
@@ -12,7 +11,7 @@ public class FindAchievements extends Command {
 
     @Override
     public boolean checkCommand(String s) {
-        return s.toLowerCase().contains("find");
+        return s.equalsIgnoreCase("find");
     }
 
     @Override

@@ -4,6 +4,7 @@ import commands.Command;
 import commands.Exit;
 import commands.FindAchievements;
 import commands.FindAll;
+import logging.LoggingAspect;
 import parser.Parser;
 import parser.ParserImpl;
 import console.ConsoleUI;
@@ -68,10 +69,10 @@ public class AppConfiguration {
         src.setUseCodeAsDefaultMessage(true);
         return src;
     }
-//    @Bean
-//    public LoggingAspect aspect(){
-//        return new LoggingAspect();
-//    }
+    @Bean
+    public LoggingAspect aspect(){
+        return new LoggingAspect();
+    }
 //    @Bean
 //    public LocaleService localeService(){
 //        return new LocaleService(ui());

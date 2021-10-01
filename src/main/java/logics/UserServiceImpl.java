@@ -17,9 +17,11 @@ public class UserServiceImpl implements UserService {
     @Override
     @Loggable
     public void start() {
-        ui.show("ru/en/jp?????? Enter your command");
-        var c = parser.parseCommand(ui.read());
-        var model = c.doCommand();
-        ui.show(model);
+        while (true) {
+            ui.show("ru/en/jp?????? Enter your command");
+            var c = parser.parseCommand(ui.read());
+            var model = c.doCommand();
+            ui.show(model);
+        }
     }
 }

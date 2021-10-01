@@ -1,7 +1,6 @@
 package commands;
 
 import database.DBInterface;
-import models.FindAllModel;
 import models.Model;
 
 public class FindAll extends Command {

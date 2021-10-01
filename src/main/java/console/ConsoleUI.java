@@ -1,6 +1,5 @@
 package console;
 
-import logging.Loggable;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import models.Model;
@@ -24,9 +23,7 @@ public class ConsoleUI implements UI {
     @SneakyThrows
     @Override
     public void show(Model model) {
-        model.showEverything().forEach((k, v)-> {
-            System.out.println(k + " -- " + v);
-        });
+        model.showEverything().forEach((k, v)-> System.out.println(k + " -- " + v));
     }
 
     @Override
