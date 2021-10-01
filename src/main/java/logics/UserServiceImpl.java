@@ -1,8 +1,8 @@
 package logics;
 
-import aspects.logging.Loggable;
+import logging.Loggable;
 import commands.*;
-import commands.parsing.Parser;
+import parse.Parser;
 import console.UI;
 import database.DBInterface;
 import localization.MessageService;
@@ -26,41 +26,26 @@ public class UserServiceImpl implements UserService {
     public void start() {
         ui.show("ru/en/jp??????");
         ms.askForLocale();
-        while (true) {
-            ResultSet rs = null;
-            var comm = retrieveCommand();
-            if (comm.getClass() == Exit.class) exit((Exit) comm);
-            if (comm.getClass() == Find.class) rs = find((Find) comm);
-            if (comm.getClass() == FindAll.class) rs = findAll((FindAll) comm);
-            returnInformation(rs);
-        }
+        var c = parser.parseCommand(ui.read());
+        System.out.println(c.getClass().getSimpleName());
+        c.doCommand();
+
     }
 
     @Override
     public Command retrieveCommand() {
-        var str = ui.read();
-        return parser.parseCommand(str);
-    }
-
-    @Loggable
-    private ResultSet find(Find command) {
-        return db.find(command.getParam());
-    }
-
-    @Loggable
-    private ResultSet findAll(FindAll command) {
-        return db.findAll();
+        return null;
     }
 
     @Override
     public void returnInformation(ResultSet rs) {
-        ui.show(rs);
-    }
 
+    }
 
     @Override
-    @Loggable
     public void exit(Exit command) {
-        command.doExit();
+
     }
+
+
 }

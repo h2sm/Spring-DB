@@ -1,6 +1,6 @@
 package localization;
 
-import aspects.logging.Loggable;
+import logging.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;

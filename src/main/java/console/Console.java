@@ -1,6 +1,6 @@
 package console;
 
-import aspects.logging.Loggable;
+import logging.Loggable;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;

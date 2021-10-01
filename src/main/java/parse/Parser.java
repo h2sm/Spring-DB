@@ -1,4 +1,4 @@
-package commands.parsing;
+package parse;
 
 import commands.Command;
 

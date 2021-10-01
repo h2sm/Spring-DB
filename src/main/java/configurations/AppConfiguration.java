@@ -1,8 +1,12 @@
-package configuration;
+package configurations;
 
-import aspects.logging.LoggingAspect;
-import commands.parsing.Parser;
-import commands.parsing.ParserImpl;
+import commands.Command;
+import commands.Exit;
+import commands.FindAchievements;
+import commands.FindAll;
+import logging.LoggingAspect;
+import parse.Parser;
+import parse.ParserImpl;
 import console.Console;
 import console.UI;
 import database.DBFactory;
@@ -19,6 +23,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
+
+import java.util.HashSet;
 
 @Configuration
 @PropertySource("classpath:/dockerConfig.properties")
@@ -49,7 +55,11 @@ public class AppConfiguration {
     }
     @Bean
     public Parser parse(){
-        return new ParserImpl();
+        var hs = new HashSet<Command>();
+        hs.add(new Exit(dbInterface()));
+        hs.add(new FindAll(dbInterface()));
+        hs.add(new FindAchievements(dbInterface()));
+        return new ParserImpl(hs);
     }
     @Bean
     public MessageSource messageSource(){
@@ -60,10 +70,10 @@ public class AppConfiguration {
         src.setUseCodeAsDefaultMessage(true);
         return src;
     }
-    @Bean
-    public LoggingAspect aspect(){
-        return new LoggingAspect(msgService());
-    }
+//    @Bean
+//    public LoggingAspect aspect(){
+//        return new LoggingAspect();
+//    }
     @Bean
     public LocaleService localeService(){
         return new LocaleService(ui());

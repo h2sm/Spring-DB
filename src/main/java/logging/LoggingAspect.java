@@ -1,7 +1,5 @@
-package aspects.logging;
+package logging;
 
-import localization.MessageService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,16 +11,14 @@ import java.util.Arrays;
 @Aspect
 @Component
 @Slf4j
-@RequiredArgsConstructor
 public class LoggingAspect {
-    private final MessageService ms;
 
-    @Before("@annotation(Loggable))")
+    @Before("@annotation(logging.Loggable))")
     public void log(JoinPoint jopo) {
         String methodName = jopo.getSignature().getName();
         var className = jopo.getTarget().getClass().getSimpleName();
         var args = jopo.getArgs();
-        log.info(ms.localize("logging.call", methodName, className, Arrays.toString(args)));
+        log.info("method:" + methodName + " from class " + className + " with args " + Arrays.toString(args));
     }
 
 

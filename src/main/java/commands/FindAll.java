@@ -1,8 +1,23 @@
 package commands;
 
+import database.DBInterface;
+import models.FindAllModel;
+import models.Model;
+
 public class FindAll extends Command {
+
+    public FindAll(DBInterface db) {
+        super(db);
+    }
+
     @Override
-    public boolean equals(Object obj) {
-        return obj.getClass() == this.getClass();
+    public boolean checkCommand(String s) {
+        return s.toLowerCase().contains("find-all");
+    }
+
+    @Override
+    public Model doCommand() {
+        super.geDatabaseService().findAll();
+        return new FindAllModel();
     }
 }
