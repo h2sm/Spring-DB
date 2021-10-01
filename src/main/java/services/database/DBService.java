@@ -1,12 +1,10 @@
-package database;
+package services.database;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import models.Model;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 @RequiredArgsConstructor
 public class DBService implements DBInterface {

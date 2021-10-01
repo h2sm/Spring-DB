@@ -1,6 +1,6 @@
-package commands;
+package services.commands;
 
-import database.DBInterface;
+import services.database.DBInterface;
 import lombok.RequiredArgsConstructor;
 import models.Model;
 

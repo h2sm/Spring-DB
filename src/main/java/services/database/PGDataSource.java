@@ -1,6 +1,4 @@
-package database;
-
-import lombok.extern.slf4j.Slf4j;
+package services.database;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;

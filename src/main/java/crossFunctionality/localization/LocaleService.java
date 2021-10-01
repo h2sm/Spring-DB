@@ -1,6 +1,6 @@
-package localization;
+package crossFunctionality.localization;
 
-import console.UI;
+import services.consoleIO.UI;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

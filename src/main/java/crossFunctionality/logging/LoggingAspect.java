@@ -1,4 +1,4 @@
-package logging;
+package crossFunctionality.logging;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 @Slf4j
 public class LoggingAspect {
 
-    @Before("@annotation(logging.Loggable))")
+    @Before("@annotation(crossFunctionality.logging.Loggable))")
     public void log(JoinPoint jopo) {
         String methodName = jopo.getSignature().getName();
         var className = jopo.getTarget().getClass().getSimpleName();

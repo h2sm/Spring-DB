@@ -1,8 +1,6 @@
-package console;
+package services.consoleIO;
 
 import models.Model;
-
-import java.sql.ResultSet;
 
 public interface UI {
     String read();

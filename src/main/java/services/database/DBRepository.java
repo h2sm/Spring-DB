@@ -1,6 +1,5 @@
-package database;
+package services.database;
 
-import commands.FindAchievements;
 import models.FindAchievementsModel;
 import models.FindAllModel;
 import models.Model;

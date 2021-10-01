@@ -1,4 +1,4 @@
-package console;
+package services.consoleIO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

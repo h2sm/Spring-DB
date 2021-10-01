@@ -1,6 +1,6 @@
-package database;
+package services.database;
 
-import configurations.AuthProperties;
+import configuration.AuthProperties;
 
 public class DBFactory {
     private static DBService service = null;

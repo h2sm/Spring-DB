@@ -1,4 +1,4 @@
-import configurations.AppConfiguration;
+import configuration.AppConfiguration;
 import logics.UserService;;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

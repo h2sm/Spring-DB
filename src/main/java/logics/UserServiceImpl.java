@@ -1,8 +1,8 @@
 package logics;
 
-import logging.Loggable;
-import parser.Parser;
-import console.UI;
+import crossFunctionality.logging.Loggable;
+import services.parser.Parser;
+import services.consoleIO.UI;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

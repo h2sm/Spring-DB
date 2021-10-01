@@ -1,8 +1,6 @@
-package console;
+package services.consoleIO;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ConsoleTest {
 

@@ -1,6 +1,6 @@
-package commands;
+package services.commands;
 
-import database.DBInterface;
+import services.database.DBInterface;
 import models.Model;
 
 public class FindAll extends Command {

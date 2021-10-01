@@ -1,6 +1,6 @@
-package parser;
+package services.parser;
 
-import commands.Command;
+import services.commands.Command;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashSet;

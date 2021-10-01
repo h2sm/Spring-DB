@@ -1,6 +1,6 @@
-package localization;
+package crossFunctionality.localization;
 
-import logging.Loggable;
+import crossFunctionality.logging.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
