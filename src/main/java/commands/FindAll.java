@@ -17,7 +17,6 @@ public class FindAll extends Command {
 
     @Override
     public Model doCommand() {
-        super.geDatabaseService().findAll();
-        return new FindAllModel();
+        return super.geDatabaseService().findAll();
     }
 }

@@ -11,6 +11,7 @@ public class LocaleService {
     private final UI ui;
     @Getter
     private Locale current = Locale.forLanguageTag("ru");
+
     public void askLocale() {
         var localeStr = ui.read();
         current = Locale.forLanguageTag(localeStr);

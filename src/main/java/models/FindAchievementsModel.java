@@ -12,7 +12,9 @@ public class FindAchievementsModel implements Model{
         return achievementsMap.get(id);
     }
 
-    public TreeMap<Integer, String> getAllAchievements() {
+    @Override
+    public TreeMap showEverything() {
         return achievementsMap;
     }
+
 }

@@ -1,9 +1,18 @@
 package models;
 
-public class FindAllModel implements Model {
+import lombok.RequiredArgsConstructor;
 
+import java.util.TreeMap;
+@RequiredArgsConstructor
+public class FindAllModel implements Model {
+private final TreeMap<Integer, String> map;
     @Override
     public String findById(int id) {
+        return null;
+    }
+
+    @Override
+    public TreeMap showEverything() {
         return null;
     }
 }

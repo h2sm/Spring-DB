@@ -13,14 +13,13 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final UI ui;
     private final Parser parser;
-    //private final MessageService ms;
 
     @Override
     @Loggable
     public void start() {
         ui.show("ru/en/jp?????? Enter your command");
-//        ms.askForLocale();
         var c = parser.parseCommand(ui.read());
         var model = c.doCommand();
+        ui.show(model);
     }
 }
