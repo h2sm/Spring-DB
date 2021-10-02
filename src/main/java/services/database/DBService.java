@@ -1,5 +1,6 @@
 package services.database;
 
+import crossFunctionality.logging.Loggable;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import models.Model;
@@ -13,6 +14,7 @@ public class DBService implements DBInterface {
 
     @SneakyThrows
     @Override
+    @Loggable
     public Model findAll() {
         var conn = src.getConnection();
         return (Model) repository.findAll(conn);
@@ -20,6 +22,7 @@ public class DBService implements DBInterface {
 
     @Override
     @SneakyThrows
+    @Loggable
     public Model find(String str) {
         var conn = src.getConnection();
         return repository.find(conn, str);

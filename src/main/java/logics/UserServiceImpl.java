@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service
 public class UserServiceImpl implements UserService {
     private final UI ui;
     private final Parser parser;

@@ -1,5 +1,6 @@
-package configuration;
+package configs;
 
+import org.springframework.stereotype.Component;
 import services.commands.Command;
 import services.commands.Exit;
 import services.commands.FindAchievements;
@@ -25,7 +26,9 @@ import org.springframework.core.env.Environment;
 import java.util.HashSet;
 
 @Configuration
+@Component
 @PropertySource("classpath:/dockerConfig.properties")
+@PropertySource("classpath:application.properties")
 @EnableAspectJAutoProxy
 public class AppConfiguration {
     @Autowired Environment env;

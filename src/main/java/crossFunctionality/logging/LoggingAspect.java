@@ -13,12 +13,12 @@ import java.util.Arrays;
 @Slf4j
 public class LoggingAspect {
 
-    @Before("@annotation(crossFunctionality.logging.Loggable))")
+    @Before("@annotation(Loggable))")
     public void log(JoinPoint jopo) {
         String methodName = jopo.getSignature().getName();
         var className = jopo.getTarget().getClass().getSimpleName();
         var args = jopo.getArgs();
-        log.info("method:" + methodName + " from class " + className + " with args " + Arrays.toString(args));
+        log.info("method " + " '" + methodName + "'"+  " from class " + className + " with args " + Arrays.toString(args));
     }
 
 
