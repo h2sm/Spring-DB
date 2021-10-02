@@ -1,4 +1,4 @@
-package logics;
+package userInteraction;
 
 import crossFunctionality.localization.MessageService;
 import crossFunctionality.logging.Loggable;

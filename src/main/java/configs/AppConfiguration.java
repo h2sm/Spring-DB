@@ -14,8 +14,8 @@ import services.consoleIO.ConsoleUI;
 import services.consoleIO.UI;
 import services.database.DBFactory;
 import services.database.DBInterface;
-import logics.EntryService;
-import logics.EntryServiceImpl;
+import userInteraction.EntryService;
+import userInteraction.EntryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -46,12 +46,12 @@ public class AppConfiguration {
         return DBFactory.getInstance(properties());
     }
 
-    @Bean//
+    @Bean//this service interacts with user: takes commands and starts them
     public EntryService userService() {
         return new EntryServiceImpl(ui(), parse(), msgService());
     }
 
-    @Bean//bean of auth properties for postgres login, pass and url (postgres is in docker)
+    @Bean//bean for auth properties for postgres login, pass and url (postgres is running in docker)
     public AuthProperties properties() {
         var properties = new AuthProperties();
         properties.setLogin(env.getProperty("docker.Login"));
@@ -60,7 +60,7 @@ public class AppConfiguration {
         return properties;
     }
 
-    @Bean//this parser parses commands from user
+    @Bean//this parser parses commands from user.
     public Parser parse() {
         var hs = new HashSet<Command>();
         hs.add(new Exit(dbInterface()));
@@ -69,17 +69,17 @@ public class AppConfiguration {
         return new ParserImpl(hs);
     }
 
-    @Bean//this bean is responsible for language tagging
+    @Bean//this bean is responsible for language tag setter and getter
     public LocaleService localeService() {
         return new LocaleService();
     }
 
     @Bean
-    public MessageService msgService() {
+    public MessageService msgService() {//this bean encapsulates localeservice (basically a Locale Tag) and messagesourse(takes all the texts for different languages)
         return new MessageService(messageSource(), localeService());
     }
 
-    @Bean//message source for i18n
+    @Bean//message source for taking localization packs in "resources" folder
     public MessageSource messageSource() {
         var src = new ReloadableResourceBundleMessageSource();
         src.setBasename("classpath:languages");
@@ -93,6 +93,4 @@ public class AppConfiguration {
     public LoggingAspect aspect() {
         return new LoggingAspect();
     }
-
-
 }
