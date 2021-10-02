@@ -13,7 +13,7 @@ public class FindAchievementsModel implements Model{
     }
 
     @Override
-    public TreeMap showEverything() {
+    public TreeMap<Integer, String> showEverything() {
         return achievementsMap;
     }
 

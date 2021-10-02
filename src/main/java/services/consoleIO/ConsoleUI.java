@@ -1,19 +1,20 @@
 package services.consoleIO;
 
+import crossFunctionality.localization.MessageService;
 import crossFunctionality.logging.Loggable;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import models.Model;
-import org.springframework.stereotype.Service;
 
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.Set;
 
 @RequiredArgsConstructor
-@Service
 public class ConsoleUI implements UI {
     private final Scanner scanner = new Scanner(System.in);
     private final PrintWriter writer = new PrintWriter(System.out);
+    private final MessageService ms;
 
     @Override
     @Loggable
@@ -26,7 +27,8 @@ public class ConsoleUI implements UI {
     @Override
     @Loggable
     public void show(Model model) {
-        model.showEverything().forEach((k, v)-> System.out.println(k + " -- " + v));
+        show(ms.localize(model.getClass().getSimpleName()));
+        model.showEverything().forEach((k, v)-> show(ms.localize("writeAll", k, v)));
     }
 
     @Override

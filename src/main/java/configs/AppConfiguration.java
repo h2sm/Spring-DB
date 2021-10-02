@@ -38,7 +38,7 @@ public class AppConfiguration {
 
     @Bean//userInterface bean: responsible for input and output of information
     public UI ui() {
-        return new ConsoleUI();
+        return new ConsoleUI(msgService());
     }
 
     @Bean//Interface of database to properly interfere with it
@@ -49,7 +49,6 @@ public class AppConfiguration {
     @Bean//
     public UserService userService() {
         return new UserServiceImpl(ui(), parse());
-        //return new UserServiceImpl(ui(), parse(), msgService());
     }
 
     @Bean//bean of auth properties for postgres login, pass and url (postgres is in docker)
