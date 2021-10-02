@@ -14,8 +14,8 @@ import services.consoleIO.ConsoleUI;
 import services.consoleIO.UI;
 import services.database.DBFactory;
 import services.database.DBInterface;
-import logics.UserService;
-import logics.UserServiceImpl;
+import logics.EntryService;
+import logics.EntryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -47,8 +47,8 @@ public class AppConfiguration {
     }
 
     @Bean//
-    public UserService userService() {
-        return new UserServiceImpl(ui(), parse());
+    public EntryService userService() {
+        return new EntryServiceImpl(ui(), parse(), msgService());
     }
 
     @Bean//bean of auth properties for postgres login, pass and url (postgres is in docker)
@@ -69,6 +69,16 @@ public class AppConfiguration {
         return new ParserImpl(hs);
     }
 
+    @Bean//this bean is responsible for language tagging
+    public LocaleService localeService() {
+        return new LocaleService();
+    }
+
+    @Bean
+    public MessageService msgService() {
+        return new MessageService(messageSource(), localeService());
+    }
+
     @Bean//message source for i18n
     public MessageSource messageSource() {
         var src = new ReloadableResourceBundleMessageSource();
@@ -84,13 +94,5 @@ public class AppConfiguration {
         return new LoggingAspect();
     }
 
-    @Bean//this bean is responsible for language tagging
-    public LocaleService localeService() {
-        return new LocaleService(ui());
-    }
 
-    @Bean
-    public MessageService msgService() {
-        return new MessageService(messageSource(), localeService());
-    }
 }

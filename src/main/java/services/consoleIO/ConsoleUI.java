@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 import models.Model;
 
 import java.io.PrintWriter;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -27,8 +28,11 @@ public class ConsoleUI implements UI {
     @Override
     @Loggable
     public void show(Model model) {
-        show(ms.localize(model.getClass().getSimpleName()));
-        model.showEverything().forEach((k, v)-> show(ms.localize("writeAll", k, v)));
+        show(ms.localize("crossFunctionality." + model.getClass().getSimpleName()));
+        model.showEverything().forEach((k, v) -> {
+            show(ms.localize("crossFunctionality.writeAll", k, v));
+            show(ms.localize("crossFunctionality.addEmptySpace"));
+        });
     }
 
     @Override

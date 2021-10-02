@@ -21,7 +21,7 @@ public class MessageService {
         return messageSource.getMessage(code, params, localeService.getCurrent());
     }
     @Loggable
-    public void askForLocale() {
-        localeService.askLocale();
+    public void askForLocale(String loc) {
+        localeService.setLocale(loc);
     }
 }

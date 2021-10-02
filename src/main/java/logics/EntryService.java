@@ -1,5 +1,5 @@
 package logics;
 
-public interface UserService {
+public interface EntryService {
     void start();
 }
