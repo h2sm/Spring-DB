@@ -1,5 +1,4 @@
 import configs.AppConfiguration;
-import userInteraction.EntryService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App {
