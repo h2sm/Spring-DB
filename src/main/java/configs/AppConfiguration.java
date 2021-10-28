@@ -38,11 +38,6 @@ public class AppConfiguration {
         return DBFactory.getInstance(properties());
     }
 
-    @Bean//this service interacts with user: takes commands and starts them
-    public EntryService userService() {
-        return new EntryServiceImpl(ui(), parse(), msgService());
-    }
-
     @Bean//bean for auth properties for postgres login, pass and url (postgres is running in docker)
     public AuthProperties properties() {
         var properties = new AuthProperties();
@@ -50,15 +45,6 @@ public class AppConfiguration {
         properties.setPassword(env.getProperty("docker.Password"));
         properties.setUrl(env.getProperty("docker.URL"));
         return properties;
-    }
-
-    @Bean//this parser parses commands from user.
-    public Parser parse() {
-        var hs = new HashSet<Command>();
-        hs.add(new Exit(dbInterface()));
-        hs.add(new FindAll(dbInterface()));
-        hs.add(new FindAchievements(dbInterface()));
-        return new ParserImpl(hs);
     }
 
     @Bean//this bean is responsible for language tag setter and getter
