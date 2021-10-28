@@ -5,7 +5,7 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
 @ShellComponent
-public class Commands {
+public class CommandShell {
     @ShellMethod(value = "get all clients", key = {"all-clients", "find-all clients", "clients"})
     public void getAllClients() {
 
