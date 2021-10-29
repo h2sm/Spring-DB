@@ -31,12 +31,16 @@ public class DBService implements DBInterface {
     }
 
     @Override
+    @SneakyThrows
     public Collection<Attendant> findAllAttendants() {
-        return null;
+        var conn = src.getConnection();
+        return repository.findAllAttendants(conn);
     }
 
     @Override
+    @SneakyThrows
     public Collection<Attendant> findAttendantsByNamePart(String str) {
-        return null;
+        var conn = src.getConnection();
+        return repository.findAttendantsByNamePart(conn,str);
     }
 }

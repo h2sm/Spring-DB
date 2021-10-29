@@ -1,12 +1,10 @@
 package models;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
 
 @Data
-@RequiredArgsConstructor
 public class Client {
     private final int id;
     private final String fullName;
