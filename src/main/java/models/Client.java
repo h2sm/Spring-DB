@@ -1,20 +1,16 @@
 package models;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
-@Data
-public class Client {
-    private int id;
-    private String fullName;
-    private String passport;
-    private String phoneNumber;
-    private Date birthDate;
 
-//    @Override
-//    public String toString(){
-//        return "Client [id =  " + id + ", name = " + fullName + ", passport = " + passport +
-//                ", phone number = " + phoneNumber +
-//                ", date of birth = " + birthDate.toString() + "]";
-//    }
+@Data
+@RequiredArgsConstructor
+public class Client {
+    private final int id;
+    private final String fullName;
+    private final String passport;
+    private final String phoneNumber;
+    private final Date birthDate;
 }
