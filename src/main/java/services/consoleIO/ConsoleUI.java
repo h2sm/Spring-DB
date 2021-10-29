@@ -3,14 +3,10 @@ package services.consoleIO;
 import crossFunctionality.localization.MessageService;
 import crossFunctionality.logging.Loggable;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import models.Model;
 import org.springframework.stereotype.Service;
 
 import java.io.PrintWriter;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.Collection;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +20,11 @@ public class ConsoleUI implements UI {
     public void show(String s) {
         writer.println(s);
         writer.flush();
+    }
+
+    @Override
+    public void printCollection(Collection<?> col) {
+
     }
 }
 

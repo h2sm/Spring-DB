@@ -1,11 +1,9 @@
 package services.database;
 
-import crossFunctionality.logging.Loggable;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import models.Attendant;
 import models.Client;
-import models.Model;
 
 import javax.sql.DataSource;
 import java.util.Collection;

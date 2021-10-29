@@ -2,7 +2,6 @@ package services.database;
 
 import models.Attendant;
 import models.Client;
-import models.Model;
 
 import java.util.Collection;
 

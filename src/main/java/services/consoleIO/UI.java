@@ -1,7 +1,8 @@
 package services.consoleIO;
 
-import models.Model;
+import java.util.Collection;
 
 public interface UI {
     void show(String s);
+    void printCollection(Collection<?> col);
 }
