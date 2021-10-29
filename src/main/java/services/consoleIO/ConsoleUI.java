@@ -24,7 +24,14 @@ public class ConsoleUI implements UI {
 
     @Override
     public void printCollection(Collection<?> col) {
+        col.forEach(System.out::println);
+    }
 
+    public void changeLocale(String loc){
+        ms.askForLocale(loc);
+    }
+    public void localize(String code){
+        show(ms.localize(code));
     }
 }
 
