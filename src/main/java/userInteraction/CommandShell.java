@@ -5,6 +5,7 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import services.database.DBService;
+import services.localization.MessageService;
 
 import java.util.Collection;
 
@@ -12,8 +13,11 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class CommandShell {
     private final DBService service;
+    private final MessageService ms;
+
     @ShellMethod(value = "get all clients", key = {"all-clients", "find-all clients", "clients"})
     public void getAllClients() {
+        ms.localize("logging.loadingAllCLients");
         print(service.findAllClients());
     }
 
@@ -34,8 +38,7 @@ public class CommandShell {
 
     @ShellMethod(value = "set local for this session", key = {"set language", "lang"})
     public void setLocale(@ShellOption(defaultValue = "ru") String localeStr) {
-
-
+        ms.askForLocale(localeStr);
     }
     private void print(Collection<?> col){
         col.forEach(System.out::println);

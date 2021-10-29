@@ -1,7 +1,7 @@
 package services.database;
 
 import configs.AuthProperties;
-import crossFunctionality.logging.Loggable;
+import logging.Loggable;
 
 public class DBFactory {
     private static DBService service = null;

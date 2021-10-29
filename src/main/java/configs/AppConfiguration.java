@@ -1,9 +1,7 @@
 package configs;
 
-import crossFunctionality.localization.LocaleService;
-import crossFunctionality.localization.MessageService;
 import org.springframework.stereotype.Component;
-import crossFunctionality.logging.LoggingAspect;
+import logging.LoggingAspect;
 import services.consoleIO.ConsoleUI;
 import services.consoleIO.UI;
 import services.database.DBFactory;
@@ -16,8 +14,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
-
-import java.util.HashSet;
+import services.localization.LocaleService;
+import services.localization.MessageService;
 
 @Configuration
 @Component

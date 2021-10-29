@@ -1,9 +1,9 @@
 package services.consoleIO;
 
-import crossFunctionality.localization.MessageService;
-import crossFunctionality.logging.Loggable;
+import logging.Loggable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import services.localization.MessageService;
 
 import java.io.PrintWriter;
 import java.util.Collection;
